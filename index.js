@@ -63,6 +63,10 @@ function generateVariations(word) {
 let BANNED_WORDS = [];
 BASE_WORDS.forEach(w => BANNED_WORDS.push(...generateVariations(w)));
 BANNED_WORDS = [...new Set(BANNED_WORDS)];
+
+// شيل كلمة "اكس" عشان متعملش مشاكل
+BANNED_WORDS = BANNED_WORDS.filter(word => word !== 'اكس' && word !== 'اكس'.toLowerCase());
+
 console.log(`[✅] تم توليد ${BANNED_WORDS.length} كلمة`);
 client.on('messageCreate', async (message) => {
     if (message.author.bot) return;
